@@ -1,3 +1,10 @@
+<!-- Connecting of php and DB file -->
+<?php
+include("./includes/connection.php");
+include("./functions/functions.php");
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -7,8 +14,7 @@
   <title>IndiMart | Home</title>
   <link rel="icon" type="image/x-icon" href="./assets/images/logo1.png">
   <!-- Bootstrap css -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- custom css -->
   <link rel="stylesheet" href="assets\css\style.css">
   <!-- font awesome -->
@@ -19,8 +25,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="./assets/images/logo1.png" alt="" style="height: 50px !important;"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,8 +40,8 @@
             <a class="nav-link mx-1" href="#">Contact Us</a>
           </li>
           <form class="d-flex " role="search">
-            <input class="form-control me-2" type="search" placeholder="Search for Products ..." aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 " type="search" style="border-radius: 50px; width:270px; border:1px solid var(--blue);" placeholder="Search for Products ..." aria-label="Search">
+            <button class="btn px-4 m-0 submit outline-none" type="submit" style="border-radius: 50px;border:1px solid var(--blue); ">Search</button>
           </form>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -44,16 +49,20 @@
             <a class="nav-link fa fa-user" href="#"> Profile</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="btn  position-relative fa fa-shopping-cart mx-auto"> Cart
+            <a class="btn position-relative fa fa-shopping-cart mx-auto"> Cart
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mx-auto">
                 1
               </span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link fa fa-briefcase" href="#"> Become a Seller</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-overlay"></div>
@@ -62,124 +71,53 @@
         <div class="col-md-12 hero-content">
           <h1>Welcome to IndiMart</h1>
           <p>Discover the best products at unbeatable prices</p>
-          <a href="#" class="btn btn-primary btn-hero">Shop Now</a>
+          <a href="#" class="btn  submit btn-hero">Shop Now</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!--product categories -->
   <h1 class="m-3 text-center text-uppercase"><b>Top Categories to choose from</b></h1>
-  <hr class="sctn-line mb-5">
-  <div class="container-fluid category-nav w-75">
-    <div class="row">
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/offer.webp" alt="Electronics">
-          <span class="d-block">Offer</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/mobiles.webp" alt="Clothing">
-          <span class="d-block">Mobiles</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/tv&applicances.webp" alt="Home & Kitchen">
-          <span class="d-block">Tv & Appilances</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/electronics.webp" alt="Home & Kitchen">
-          <span class="d-block">Electronics</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/fashion.webp" alt="Home & Kitchen">
-          <span class="d-block">Fashion</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/beauty.webp" alt="Beauty">
-          <span class="d-block">Beauty</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/homeKitchen.webp" alt="Home & Kitchen">
-          <span class="d-block">Home & Kitchen</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/furniture.webp" alt="Home & Kitchen">
-          <span class="d-block">Furniture</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/travel.webp" alt="Home & Kitchen">
-          <span class="d-block">Travel</span>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-3 col-lg">
-        <a href="#">
-          <img src="./assets/images/grocery.webp" alt="Home & Kitchen">
-          <span class="d-block">Grocery</span>
-        </a>
-      </div>
+  <hr class="sctn-line mb-1">
+  <div class="container-fluid category-nav w-75 overflow-auto">
+    <div class="row flex-nowrap">
+      <?php
+      getCategories();
+      ?>
     </div>
   </div>
-  <!-- Product Items -->
-  <div class="card-group">
-    <div class="card">
-      <img src="./assets/images/Apple-more.jpg" class="card-img-top" alt="c.jpg">
-      <div class="card-body">
-        <h5 class="card-title">Flexible Learning</h5>
-        <p class="card-text">Learn at your own pace, move between multiple courses, or switch to a different course
-        <p class="card-text"></p>
-        <button type="button" class="btn btn-primary fa fa-shopping-cart"> Add To cart</button>
-        <button type="button" class="btn btn-primary fa fa-bars"> View More</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./assets/images/biryani1.jpg" class="card-img-top" alt="c++.jpg">
-      <div class="card-body">
-        <h5 class="card-title">Unlimited Certificates</h5>
-        <p class="card-text">Earn a certificate for every learning program that you complete at no additional cost</p>
-        <p class="card-text"></p>
-        <button type="button" class="btn btn-primary fa fa-shopping-cart"> Add To cart</button>
-        <button type="button" class="btn btn-primary fa fa-bars"> View More</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./assets/images/book.jpg" class="card-img-top" alt="python">
-      <div class="card-body">
-        <h5 class="card-title">Saves Money</h5>
-        <p class="card-text">Spend less money on your learning if you plan to take multiple courses this year</p>
-        <p class="card-text"></p>
-        <button type="button" class="btn btn-primary fa fa-shopping-cart"> Add To cart</button>
-        <button type="button" class="btn btn-primary fa fa-bars"> View More</button>
 
-      </div>
+  <!-- Featured Brands -->
+  <h1 class="m-3 text-center text-uppercase"><b>Featured Brands</b></h1>
+  <hr class="sctn-line mb-1">
+  <div class="container-fluid category-nav w-75 overflow-auto">
+    <div class="row flex-nowrap">
+      <?php
+      getbrands();
+
+      ?>
     </div>
-    <div class="card">
-      <img src="./assets/images/biryani2.jpg" class="card-img-top" alt="python">
-      <div class="card-body">
-        <h5 class="card-title">Learn Anything</h5>
-        <p class="card-text">Explore any interest or trending topic, take prerequisites, and advance your skills</p>
-        <button type="button" class="btn btn-primary fa fa-shopping-cart"> Add To cart</button>
-        <button type="button" class="btn btn-primary fa fa-bars"> View More</button>
+  </div>
+
+
+  <!-- Product Items -->
+  <h1 class="m-4 mb-2 text-center text-uppercase "><b>Browse our Products</b></h1>
+  <hr class="sctn-line mb-1">
+  <div class="row px-1 mt-3 w-75 mx-auto">
+    <div class="col-md-10">
+      <div class="row">
+        <!-- fetching products from DB through function -->
+        <?php
+        getProducts();
+        getUniqueCategories();
+        ?>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class=" text-white mt-3 pt-4 pb-3" style="background-color: #0097B2 !important;">
+  <footer class=" text-white mt-3 pt-4 pb-3" style="background-color: #277A89 !important;">
     <div class="container">
       <div class="row">
         <!-- Company Info -->
@@ -221,9 +159,7 @@
   </footer>
 
   <!-- bootstrap js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -91,7 +91,7 @@
         ?>
     </div>
     <!-- Footer -->
-    <footer class=" text-white mt-3 pt-4 pb-3" style="background-color: #0097B2 !important;">
+    <footer class=" text-white mt-3 pt-4 pb-3" style="background-color: #277A89 !important;">
         <div class="container">
             <div class="row">
                 <!-- Company Info -->

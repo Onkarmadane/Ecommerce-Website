@@ -1,7 +1,14 @@
+:root {
+    --blue: #277A89;
+    --white: #ffffff;
+  }
+
 .active{
+    color: var(--blue) !important;
     font-weight: bold;
 }
-
+/* *{overflow: hidden;
+} */
 .hero-section {
     position: relative;
     background: url('../images/shopping-bag-cart.jpg') no-repeat center center;
@@ -43,27 +50,25 @@
     /* background-color: aqua; */
     transition: background-color 0.3s ease;
 }
-.btn-hero:hover {
-    background-color: #0056b3;
-}
-.category-nav .nav-link {
-    padding: 0;
-  }
- .category-nav a{
-    text-decoration: none !important;
-    color: black;
-    text-align: center;
-  }
 
-  .category-nav .nav-item {
-    margin-bottom: 15px;
+.category-nav {
+    white-space: nowrap;
   }
-
-  .category-nav .nav-link img {
-    max-width: 100%;
-    height: auto;
+  
+  @media (max-width: 768px) {
+    .category-nav {
+      overflow-x: auto;
+    }
+    
+    .category-nav .row {
+      flex-wrap: nowrap;
+    }
+  
+    .category-nav .col-6 {
+      flex: 0 0 auto;
+    }
   }
-  .sctn-line {
+    .sctn-line {
     width: 75%;
     margin: auto;
     height: 1px;
@@ -89,3 +94,18 @@
     transition: .50s;
     transform: scale(1.01);
   }
+
+.submit{
+    background-color: var(--blue);
+}
+.subumit:hover{
+    background-color: #1f5963;
+    transition: ease 1.3s;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color: var(--blue);
+}
