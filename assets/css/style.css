@@ -7,8 +7,8 @@
     color: var(--blue) !important;
     font-weight: bold;
 }
-/* *{overflow: hidden;
-} */
+
+
 .hero-section {
     position: relative;
     background: url('../images/shopping-bag-cart.jpg') no-repeat center center;
@@ -108,4 +108,26 @@ a{
 }
 a:hover{
     color: var(--blue);
+}
+.typewriter {
+    font-family: monospace;
+    font-size: 2.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--blue); }
+}
+
+.typewriter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
 }
