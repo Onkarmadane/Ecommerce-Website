@@ -7,8 +7,9 @@
     color: var(--blue) !important;
     font-weight: bold;
 }
-
-
+/* .search-nav{
+    box-shadow: 0px 0px 0px 0px lightblue;
+} */
 .hero-section {
     position: relative;
     background: url('../images/shopping-bag-cart.jpg') no-repeat center center;
@@ -101,6 +102,7 @@
 .subumit:hover{
     background-color: #1f5963;
     transition: ease 1.3s;
+    /* color: white; */
 }
 a{
     color: black;
@@ -130,4 +132,36 @@ a:hover{
     height: 100vh;
     text-align: center;
     flex-direction: column;
+}
+/* cart page styling */
+.price-strike {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.price-current {
+    font-weight: bold;
+    color: #000;
+}
+
+.price-discount {
+    color: green;
+}
+
+.product-actions .btn {
+    margin: 0 5px;
+}
+
+.total-amount {
+    font-weight: bold;
+    color: #000;
+}
+
+.text-success {
+    color: green;
+}
+
+.input-quantity {
+    width: 50px;
+    text-align: center;
 }
