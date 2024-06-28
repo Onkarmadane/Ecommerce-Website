@@ -1,3 +1,24 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap'); */
+/* <STYLE TYPE="text/css" media="screen,print"> */
+  @font-face {
+    font-family: CCodeCodabar_S3_Trial;
+    src: url("fonts/ConnectCodeCodabar_S3_Trial.eot");
+    src: local("CCodeCodabar_S3_Trial"), 
+         url("fonts/ConnectCodeCodabar_S3_Trial.otf") 
+         format("opentype"), 
+	 url("fonts/ConnectCodeCodabar_S3_Trial.woff") 
+         format("woff");
+  }
+
+  .barcode 
+   {font-weight: normal; 
+    font-style: normal; 
+    line-height:normal; 
+    font-family: 'CCodeCodabar_S3_Trial', 
+                  sans-serif; font-size: 32px}
+
+
+
 :root {
     --blue: #277A89;
     --white: #ffffff;
@@ -72,7 +93,7 @@
     .sctn-line {
     width: 75%;
     margin: auto;
-    height: 1px;
+    /* height: 1px; */
     background: rgb(0, 0, 0);
 }
 
@@ -164,4 +185,15 @@ a:hover{
 .input-quantity {
     width: 50px;
     text-align: center;
+    
 }
+
+
+  .barcode{
+    font-family: "Libre Barcode 39", system-ui;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  /* login form */
+  

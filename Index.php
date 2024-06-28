@@ -16,13 +16,14 @@ include("./functions/functions.php");
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Font Awesome -->
-
+  <!-- Font Awesome And Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-HXR1xQ5zDxd1RfVmiI4UyirRyx30v2uS8QG2gEB3KbhD0BNwbVg6YKd1ecItZJt6B2UVF/e+3SZ1g5QbN/DAmg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
 </head>
 
 <body>
+  
   <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -39,10 +40,10 @@ include("./functions/functions.php");
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
             <li class="nav-item">
-              <a class="nav-link " href="#"> <i class="fa fa-user"></i> Profile</a>
+              <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Profile</a>
             </li>
             <li class="nav-item">
-              <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart 
+              <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mx-1 "><?php cartItemsNumbers(); ?></span>
               </a>
             </li>
@@ -56,6 +57,15 @@ include("./functions/functions.php");
   </div>
   <!-- Cart function call -->
   <?php cart(); ?>
+
+  <!-- Product Categories -->
+  <!-- <h1 class="m-3 text-center text-uppercase"><b>Top Categories to choose from</b></h1> -->
+  <!-- <hr class="sctn-line mb-1"> -->
+  <div class="container-fluid category-nav bg-light overflow-auto">
+    <div class="row flex-nowrap">
+      <?php getCategories(); ?>
+    </div>
+  </div>
   <!-- Hero Section -->
   <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -83,19 +93,12 @@ include("./functions/functions.php");
   </div>
 
 
-  <!-- Product Categories -->
-  <h1 class="m-3 text-center text-uppercase"><b>Top Categories to choose from</b></h1>
-  <hr class="sctn-line mb-1">
-  <div class="container-fluid category-nav w-75 overflow-auto">
-    <div class="row flex-nowrap">
-      <?php getCategories(); ?>
-    </div>
-  </div>
+  
 
   <!-- Featured Brands -->
-  <h1 class="m-3 text-center text-uppercase"><b>Featured Brands</b></h1>
+  <h1 class="m-3 text-center"><b>Featured Brands</b></h1>
   <hr class="sctn-line mb-1">
-  <div class="container-fluid category-nav w-75 overflow-auto">
+  <div class="container-fluid category-nav w-auto overflow-auto">
     <div class="row flex-nowrap">
       <?php
       getbrands();
@@ -105,10 +108,10 @@ include("./functions/functions.php");
   </div>
 
   <!-- Product Items -->
-  <h1 class="m-4 mb-2 text-center text-uppercase"><b> our Products</b></h1>
+  <h1 class="m-4 mb-2 text-center "><b> Our Products</b></h1>
   <hr class="sctn-line mb-1">
   <div>
-    <div class="row px-1 mt-3 w-75 mx-auto">
+    <div class="row p-1 m-3 w-auto">
       <div class="col-md-10">
         <div class="row">
           <!-- Fetching products from DB through function -->
@@ -119,7 +122,7 @@ include("./functions/functions.php");
         </div>
       </div>
     </div>
-    <div class="row px-1 mt-3 w-75 mx-auto">
+    <div class="row px-1 mt-3 mx-auto">
       <div class="col-md-10">
         <div class="row">
           <?php
@@ -133,47 +136,9 @@ include("./functions/functions.php");
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-white mt-3 pt-4 pb-3" style="background-color: #277A89 !important;">
-      <div class="container">
-        <div class="row">
-          <!-- Company Info -->
-          <div class="col-md-4">
-            <h5>IndiMart</h5>
-            <p>
-              1234 Street Name<br>
-              City, State, 12345<br>
-              Phone: (123) 456-7890<br>
-              Email: info@company.com
-            </p>
-          </div>
-          <!-- Quick Links -->
-          <div class="col-md-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Home</a></li>
-              <li><a href="#" class="text-white">Shop</a></li>
-              <li><a href="#" class="text-white">About Us</a></li>
-              <li><a href="#" class="text-white">Contact</a></li>
-            </ul>
-          </div>
-          <!-- Social Media -->
-          <div class="col-md-4">
-            <h5>Follow Us</h5>
-            <a href="#" class="text-white mr-3"><i class="fa fa-facebook-f"></i></a>
-            <a href="#" class="text-white mr-3"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="text-white mr-3"><i class="fa fa-instagram"></i></a>
-            <a href="#" class="text-white"><i class="fa fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <hr class="bg-white">
-        <div class="row">
-          <div class="col text-center">
-            <p class="mb-0">&copy; 2024 IndiMart. All Rights Reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <?php
+include("./includes/footer.php");
+  ?>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
