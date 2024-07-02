@@ -33,11 +33,11 @@ include("./functions/functions.php");
                         <li class="nav-item">
                             <a class="nav-link " href="#"> <i class="fa fa-user"></i> Profile</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mx-1 "><?php cartItemsNumbers(); ?></span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

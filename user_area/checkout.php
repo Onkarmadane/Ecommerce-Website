@@ -44,8 +44,10 @@
       <?php
       if(!isset($_SESSION['username'])){
         include('./user_area/userLogin.php');
+        // include('./user_area/userRegistration.php');
+
       }else{
-        include('payment.php');
+        include('../payment.php');
       }
       ?>
     </div>

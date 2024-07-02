@@ -26,11 +26,11 @@ function getProducts()
       <img src='./admin_area/product_images/$product_image1' alt='$product_title'>
       <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
-      <p class='card-text barcode'>$product_title</p>
+      <i class='fa-solid fa-barcode'></i>
       <p class='card-text'>$product_desc</p>
       <p class='card-text'><b>&#8377;$product_price/-</b></p>
         <a type='button' href='index.php?addToCart=$product_id' class='btn  fa fa-shopping-cart m-1 btn-warning'></a>
-        <a type='button' class='btn  btn-success fa fa-tag m-1 '  href='#'> Buy Now</a>
+        <a type='button' class='btn  btn-success  m-1 '  href='#'> <i class='fa fa-tag'></i> Buy Now</a>
     </div>
     </div>
   </div>";
@@ -67,7 +67,7 @@ function getUniqueCategories()
       <img src='./admin_area/product_images/$product_image1' alt='$product_title'>
       <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
-      <p class='card-text'>$product_desc</p>
+      <p class='card-text' style='text-align:justify;'>$product_desc</p>
       <p class='card-text'><b>&#8377;$product_price/-</b></p>
        <a type='button' href='index.php?addToCart=$product_id' class='btn  fa fa-shopping-cart m-1 btn-warning'></a>
          <a type='button' class='btn  btn-success fa fa-tag m-1 '  href='#'> Buy Now</a>
@@ -134,7 +134,7 @@ function getUniqueBrands()
       <img src='./admin_area/product_images/$product_image1' alt='$product_title'>
       <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
-      <p class='card-text'>$product_desc</p>
+      <p class='card-text' style='text-align:justify;'>$product_desc</p>
       <p class='card-text'><b>&#8377;$product_price/-</b></p>
        <a type='button' href='index.php?addToCart=$product_id' class='btn  fa fa-shopping-cart m-1 btn-warning'></a>
         <a type='button' class='btn  btn-success fa fa-tag m-1 '  href='#'> Buy Now</a>
@@ -208,7 +208,7 @@ function DisplayAllProducts()
       <img src='./admin_area/product_images/$product_image1' alt='$product_title'>
       <div class='card-body'>
       <h5 class='card-title'>$product_title</h5>
-      <p class='card-text'>$product_desc</p>
+      <p class='card-text' style='text-align:justify;'>$product_desc</p>
       <p class='card-text'><b>&#8377;$product_price/-</b></p>
        <a type='button' href='index.php?addToCart=$product_id' class='btn  fa fa-shopping-cart m-1 btn-warning'></a>
          <a type='button' class='btn  btn-success fa fa-tag m-1 '  href='#'> Buy Now</a>
@@ -244,7 +244,7 @@ function searchProducts()
   <div class='card'>
     <img src='./admin_area/product_images/$product_image1' alt='$product_title'>
     <div class='card-body'>
-    <h5 class='card-title'>$product_title</h5>
+    <h5 class='card-title' style='text-align:justify;'>$product_title</h5>
     <p class='card-text'>$product_desc</p>
     <p class='card-text'><b>&#8377;$product_price/-</b></p>
      <a type='button' href='index.php?addToCart=$product_id' class='btn  fa fa-shopping-cart m-1 btn-warning'></a>
@@ -525,3 +525,5 @@ function get_user_order_details()
         }
     }
 }
+
+?>
