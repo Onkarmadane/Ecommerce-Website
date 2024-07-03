@@ -2,6 +2,8 @@
 <?php
 include("./includes/connection.php");
 include("./functions/functions.php");
+session_start();
+
 ?>
 
 <!doctype html>
@@ -38,9 +40,33 @@ include("./functions/functions.php");
             </form>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
-            <li class="nav-item">
-              <a class="nav-link " href="#"> <i class="fa fa-user"></i> Profile</a>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php if (!isset($_SESSION['username'])) {
+                  echo "<i class='fa fa-user'></i> Guest";
+                } else {
+                  echo"<i class='fa fa-user'></i> ". $_SESSION['username'];
+                }
+                ?>
+              </a>
+              <ul class="dropdown-menu">
+                <?php
+
+                if (!isset($_SESSION['username'])) {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Login</a>
+            </li>';
+                } else {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogout.php"> <i class="fa fa-user"></i> Logout</a>
+            </li>';
+                }
+                ?>
+                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
+
+              </ul>
             </li>
+           
             <li class="nav-item">
               <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart 
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mx-1 "><?php cartItemsNumbers(); ?></span>

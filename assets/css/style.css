@@ -23,6 +23,9 @@
     --blue: #277A89;
     --white: #ffffff;
   }
+  html {
+    scroll-behavior: smooth;
+  }  
 
 .active{
     color: var(--blue) !important;

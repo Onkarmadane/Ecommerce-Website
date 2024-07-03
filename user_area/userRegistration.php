@@ -122,8 +122,9 @@ include("../functions/functions.php");
         $resultCart= mysqli_query($con,$selectCartItems);
         $rowCount=mysqli_num_rows($resultCart);
         if($rowCount>0){
-            $_SESSION['username'];
+            $_SESSION['username']=$username;
             echo "<script>alert('You have items in your cart');</script>";
+            echo "<script>alert('Login with your Credentials');</script>";
             echo "<script>window.open('checkout.php','_self')</script>";
         }else{
             echo "<script>window.open('../index.php','_self')</script>";

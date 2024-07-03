@@ -2,6 +2,7 @@
 <?php
 include("./includes/connection.php");
 include("./functions/functions.php");
+session_start();
 ?>
 
 <!doctype html>
@@ -30,14 +31,32 @@ include("./functions/functions.php");
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
-                        <li class="nav-item">
-                            <a class="nav-link " href="#"> <i class="fa fa-user"></i> Profile</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mx-1 "><?php cartItemsNumbers(); ?></span>
-                            </a>
-                        </li> -->
+                    <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php if (!isset($_SESSION['username'])) {
+                  echo "<i class='fa fa-user'></i> Guest";
+                } else {
+                  echo"<i class='fa fa-user'></i> ". $_SESSION['username'];
+                }
+                ?>
+              </a>
+              <ul class="dropdown-menu">
+                <?php
+
+                if (!isset($_SESSION['username'])) {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Login</a>
+            </li>';
+                } else {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogout.php"> <i class="fa fa-user"></i> Logout</a>
+            </li>';
+                }
+                ?>
+                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
+
+              </ul>
+            </li>
                     </ul>
                 </div>
             </div>
@@ -109,7 +128,7 @@ include("./functions/functions.php");
                                         <td><input type="checkbox" name="removeitem[]" value="<?php echo $product_id ?>"></td>
                                         <td>
                                             <!-- <button class="px-2 py-1 bg-info">Update Cart</button> -->
-                                            <input type="submit" value="Update Cart"  class='submit px-3 py-2 m-1 border-0 ms-3 text-light' style='border-radius:15px;'name="update_cart" >
+                                            <input type="submit" value="Update Cart" class='submit px-3 py-2 m-1 border-0 ms-3 text-light' style='border-radius:15px;' name="update_cart">
                                             <!-- <button class="px-2 py-1 bg-info">Remove Item</button> -->
                                             <input type="submit" value="Remove Item" class="px-2 py-1 btn m-1 bg-light btn text-dark" name="remove_cart" style="border-radius:15px;outline:#277A89 1px solid">
                                         </td>
@@ -136,9 +155,10 @@ include("./functions/functions.php");
                         echo "<h4 class='px-4'>Subtotal :<strong class='text-danger'>&#8377;$total_price/-</strong></h4>
                                 
                                  <button class='btn text-black p-3' type='submit'name='continue_shopping'  value='Continue Shopping' style='outline:#277A89 1px solid ;border-radius:15px;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>
-                                <button class='submit px-3 py-2 border-0 ms-3 text-light' style='border-radius:15px;'><a href='./checkout.php' class='text-light text-decoration-none ' ><i class='fa fa-shopping-cart'></i> Checkout</a></button>";
+                                <button class='submit px-3 py-2 border-0 ms-3 text-light' style='border-radius:15px;'><a href='./user_area/checkout.php' class='text-light text-decoration-none ' ><i class='fa fa-shopping-cart'></i> Checkout</a></button>";
                     } else {
-                        echo "<input type='submit' value='Continue Shopping' class='bg-dark text-light px-3 py-2 border-0 ms-3' name='continue_shopping'>";
+                        echo "<button class='btn text-black p-3' type='submit'name='continue_shopping'  value='Continue Shopping' style='outline:#277A89 1px solid ;border-radius:15px;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>"; 
+                        // <input type='submit' value='Continue Shopping' class='bg-dark text-light px-3 py-2 border-0 ms-3' name='continue_shopping'>
                     }
                     if (isset($_POST['continue_shopping'])) {
                         echo "<script>window.open('index.php','_self')</script>";
@@ -149,27 +169,23 @@ include("./functions/functions.php");
     </div>
     </form>
     <?php
-            function remove_cart_item()
-            {
-                global $con;
-                if (isset($_POST['remove_cart']))
-                {
-                    foreach($_POST['removeitem'] as $remove_id)
-                    {
-                        echo $remove_id;
-                        $delete_query="Delete from `cart` where product_id=$remove_id";
-                        $run_delete = mysqli_query($con,$delete_query);
-                        if($run_delete)
-                        {
-                            echo "<script>window.open('cart.php','_self')</script>";
-                        }
-                    }
+    function remove_cart_item()
+    {
+        global $con;
+        if (isset($_POST['remove_cart'])) {
+            foreach ($_POST['removeitem'] as $remove_id) {
+                echo $remove_id;
+                $delete_query = "Delete from `cart` where product_id=$remove_id";
+                $run_delete = mysqli_query($con, $delete_query);
+                if ($run_delete) {
+                    echo "<script>window.open('cart.php','_self')</script>";
                 }
-
             }
-            echo $remove_item = remove_cart_item();
-        ?>
-        <!-- <div class='container'>
+        }
+    }
+    echo $remove_item = remove_cart_item();
+    ?>
+    <!-- <div class='container'>
                 <div class='row'>
                     <div class='col-12'>
                         <div class='card mb-4'>
@@ -207,7 +223,7 @@ include("./functions/functions.php");
                             <div class='card-body'>
                                 <h5 class='card-title'>Price details</h5>
                                 <div class='d-flex justify-content-between'>
-                                    <div><b><?php echo "&#8377;" . $price_table ."/-" ?></b></div>
+                                    <div><b><?php echo "&#8377;" . $price_table . "/-" ?></b></div>
                                    
                                 </div>
                                
@@ -217,7 +233,7 @@ include("./functions/functions.php");
                                 </div>
                                 <div class='d-flex justify-content-between total-amount'>
                                     <div>Total Amount</div>
-                                    <div><b class="text-right"><?php echo "&#8377;" . $price_table ."/-" ?></div>
+                                    <div><b class="text-right"><?php echo "&#8377;" . $price_table . "/-" ?></div>
                                 </div>
                                 
                             </div>

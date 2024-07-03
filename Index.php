@@ -2,6 +2,7 @@
 <?php
 include("./includes/connection.php");
 include("./functions/functions.php");
+session_start();
 ?>
 
 <!doctype html>
@@ -24,7 +25,7 @@ include("./functions/functions.php");
 </head>
 
 <body>
-  
+
   <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -39,9 +40,33 @@ include("./functions/functions.php");
               <input type="submit" value="Search" class="btn px-4 m-0 submit outline-none" style="border-radius: 50px; border:1px solid var(--blue);" name="search_product">
             </form>
           </ul>
+
           <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
-            <li class="nav-item">
-              <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Profile</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php if (!isset($_SESSION['username'])) {
+                  echo "<i class='fa fa-user'></i> Guest";
+                } else {
+                  echo"<i class='fa fa-user'></i> ". $_SESSION['username'];
+                }
+                ?>
+              </a>
+              <ul class="dropdown-menu">
+                <?php
+
+                if (!isset($_SESSION['username'])) {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Login</a>
+            </li>';
+                } else {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/userLogout.php"> <i class="fa fa-user"></i> Logout</a>
+            </li>';
+                }
+                ?>
+                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
+
+              </ul>
             </li>
             <li class="nav-item">
               <a class="btn position-relative " href="cart.php"> <i class="fa fa-shopping-cart mx-1"></i>Cart
@@ -94,7 +119,7 @@ include("./functions/functions.php");
   </div>
 
 
-  
+
 
   <!-- Featured Brands -->
   <h1 class="m-3 text-center"><b>Featured Brands</b></h1>
@@ -112,9 +137,9 @@ include("./functions/functions.php");
   <h1 class="m-4 mb-2 text-center "><b> Our Products</b></h1>
   <hr class="sctn-line mb-1">
   <div>
-    <div class="row p-1 m-3 w-auto">
-      <div class="col-md-10">
-        <div class="row">
+    <div class="row p-1 m-3">
+      <div class="col-md-12 mx-auto">
+        <div class="row  text-wrap wrap">
           <!-- Fetching products from DB through function -->
           <?php
           getProducts();
@@ -137,9 +162,9 @@ include("./functions/functions.php");
       </div>
     </div>
 
-  <?php
-include("./includes/footer.php");
-  ?>
+    <?php
+    include("./includes/footer.php");
+    ?>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
