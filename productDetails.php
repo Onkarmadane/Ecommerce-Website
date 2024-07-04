@@ -19,7 +19,7 @@ session_start();
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Font Awesome -->
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-HXR1xQ5zDxd1RfVmiI4UyirRyx30v2uS8QG2gEB3KbhD0BNwbVg6YKd1ecItZJt6B2UVF/e+3SZ1g5QbN/DAmg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 </head>
@@ -40,12 +40,12 @@ session_start();
             </form>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
-          <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php if (!isset($_SESSION['username'])) {
                   echo "<i class='fa fa-user'></i> Guest";
                 } else {
-                  echo"<i class='fa fa-user'></i> ". $_SESSION['username'];
+                  echo "<i class='fa fa-user'></i> " . $_SESSION['username'];
                 }
                 ?>
               </a>
@@ -79,7 +79,7 @@ session_start();
       </div>
     </nav>
   </div>
- 
+
 
   <!-- Product Categories -->
   <div class="container-fluid category-nav overflow-auto search-nav">
@@ -88,9 +88,9 @@ session_start();
     </div>
   </div>
   <!-- Featured Brands -->
-  
+
   <!-- Product Items -->
-  
+
   <div>
     <div class="row px-1 mt-3 w-75 mx-auto">
       <div class="col-md-10">
@@ -98,7 +98,7 @@ session_start();
           <!-- Fetching products from DB through function -->
           <?php
           // getProducts();
-          searchProducts();           
+          searchProducts();
           ?>
         </div>
       </div>
