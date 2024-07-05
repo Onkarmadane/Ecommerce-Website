@@ -77,7 +77,7 @@ if (isset($_POST['userLogin'])) {
             } else {
                 $_SESSION['username'] = $username;
                 echo "<script>alert('Welcome to IndiMart $username');</script>";
-                echo "<script>window.open('../index.php','_self')</script>";
+                echo "<script>window.open('payment.php','_self')</script>";
             }
         } else {
             echo "<script>alert('Invalid Credentials');</script>";

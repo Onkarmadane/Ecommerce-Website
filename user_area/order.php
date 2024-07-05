@@ -29,6 +29,8 @@ if (isset($_GET["userId"])) {
 $ip = getIPAddress();
 $totalPrice = 0;
 $cart_query = "SELECT * FROM `cart` WHERE ip='$ip'";
+$invoiceNumber = mt_rand();
+$status = "Pending";
 $result_cart_price = mysqli_query($con, $cart_query);
 $countProducts = mysqli_num_rows($result_cart_price);
 while ($rowPrice = mysqli_fetch_array($result_cart_price)) {
@@ -41,6 +43,37 @@ while ($rowPrice = mysqli_fetch_array($result_cart_price)) {
         $total_price += $product_values;
     }
 }
+
+// Getting quantity from cart
+$getCart = "SELECT * FROM `cart`";
+$runCart = mysqli_query($con, $getCart);
+$getItemQuantity = mysqli_fetch_array($runCart);
+$quantity = $getItemQuantity['quantity'];
+if ($quantity == 0) {
+    $quantity = 1;
+    $subTotal = $total_price;
+} else {
+    // $quantity = $quantity;
+    $subTotal = $total_price * $quantity;
+}
+$insert_order = "INSERT  INTO `userorders` (userId,dueAmt,invoiceNumber,totalProducts,orderDate,orderStatus) VALUES($userId,$subTotal,$invoiceNumber,$countProducts,NOW(),'$status')";
+$result_query = mysqli_query($con, $insert_order);
+if ($result_query) {
+    echo "<script>alert('Orders are submitted Sucessfully');</script>";
+    echo "<script>window.open('profile.php','_self')</script>";
+}
+// Pending Orders
+$status = "Pending";
+$insertPendingOrder = "INSERT  INTO `pendingorder` (userId,invoiceNumber,product_id,quantity,orderStatus) VALUES($userId,$invoiceNumber,$product_id,$quantity,'$status')";
+$resultPendingOrders = mysqli_query($con, $insertPendingOrder);
+
+// Delete items from cart
+$emptyCart="DELETE FROM `cart` WHERE ip='$ip'";
+$resultDelete = mysqli_query($con, $emptyCart);
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +86,7 @@ while ($rowPrice = mysqli_fetch_array($result_cart_price)) {
 </head>
 
 <body>
-<h1>Order</h1>
+    <h1>Order</h1>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ session_start();
 </head>
 
 <body>
-  <div>
+  <!-- <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/index.php"><img src="./assets/images/logo1.png" alt="" style="height: 50px !important;"></a>
@@ -55,15 +55,13 @@ session_start();
             </li>';
                 }
                 ?>
-                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
-
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </div>
+  </div> -->
 
   <div class="row px-1">
     <div class="col-md-12">

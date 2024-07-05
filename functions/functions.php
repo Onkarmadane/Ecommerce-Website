@@ -325,205 +325,97 @@ function cartItemsNumbers()
   }
   echo $CountCartItems;
 }
-
-// function totalCartPrice()
-// {
-//   global $con;
-//   $ip = getIPAddress();
-//   $total_price = 0; // Initialize the total_price variable
-
-//   $cart_query = "SELECT * FROM `cart` WHERE ip='$ip'";
-//   $result_query = mysqli_query($con, $cart_query);
-
-//   if (!$result_query) {
-//     die("Cart Query Failed: " . mysqli_error($con));
-//   }
-
-//   while ($row = mysqli_fetch_array($result_query)) {
-//     $product_id = $row['product_id'];
-//     $quantity = $row['quantity'];
-//     $select_product = "SELECT * FROM `products` WHERE product_id='$product_id'";
-//     $result_products = mysqli_query($con, $select_product);
-
-//     if (!$result_products) {
-//       die("Product Query Failed: " . mysqli_error($con));
-//     }
-
-//     while ($row_products_price = mysqli_fetch_array($result_products)) {
-//       $product_price = $row_products_price['product_price']; // Assuming 'product_price' is the column name in your products table
-//       $product_title = $row_products_price['product_title'];
-//       $product_desc = $row_products_price['product_desc'];
-//       $pImg = $row_products_price['pImg1'];
-      
-//       $product_values = $product_price * $quantity; // Calculate the total price for this product based on quantity
-//       $total_price += $product_values;
-
-      // echo "<div class='container'>
-      //           <div class='row'>
-      //               <div class='col-12'>
-      //                   <div class='card mb-4'>
-      //                       <div class='card-body'>
-      //                           <div class='row'>
-      //                               <div class='col-4 col-md-2'>
-      //                                   <img loading='lazy' class='img-fluid' alt='$product_title' src='./admin_area/product_images/$pImg' style='width:100% !important;  object-fit:cover;'>
-      //                               </div>
-      //                               <div class='col-8 col-md-10'>
-      //                                   <div>
-      //                                       <p class='text-black'>$product_title</p>
-                                            
-      //                                   </div>
-      //                                   <p class='text-black'>$product_desc</p>
-      //                                   <div class='d-flex justify-content-between align-items-center'>
-                                           
-      //                                   </div>
-      //                                   <div class='mt-3'>
-      //                                       Delivery by Fri Jun 28 | <span class='text-success'>Free</span>
-      //                                   </div>
-      //                               </div>
-      //                           </div>
-      //                           <div class='d-flex justify-content-between align-items-center mt-3'>
-      //                               <div class='d-flex align-items-center'>
-      //                                   <button class='btn btn-outline-secondary minus-btn' data-id='$product_id'> – </button>
-      //                                   <input type='text' class='form-control input-quantity mx-2' id='quantity_$product_id' value='$quantity'>
-      //                                   <button class='btn btn-outline-secondary plus-btn' data-id='$product_id'> + </button> &nbsp;
-      //                                   <button class='btn btn-warning p-3'><i class='fa fa-arrows-rotate'></i> Update</button>
-      //                               </div>
-      //                               <div>
-      //                                   <button class='btn btn-danger p-3 remove-btn' data-id='$product_id'><i class='fa fa-trash'></i> Remove</button>
-      //                               </div>
-      //                           </div>
-      //                       </div>
-      //                       <div class='card-body'>
-      //                           <h5 class='card-title'>Price details</h5>
-      //                           <div class='d-flex justify-content-between'>
-      //                               <div><b>&#8377;$product_price/-</b></div>
-                                   
-      //                           </div>
-                               
-      //                           <div class='d-flex justify-content-between'>
-      //                               <div>Delivery Charges</div>
-      //                               <div class='text-success'>Free</div>
-      //                           </div>
-      //                           <div class='d-flex justify-content-between total-amount'>
-      //                               <div>Total Amount</div>
-      //                               <div><b>&#8377;$product_price/-</b></div>
-      //                           </div>
-                                
-      //                       </div>
-      //                       <div class='card-body'>
-      //                           <form method='post' action='#'>
-      //                               <input type='hidden' name='domain' value='physical'>
-      //                               <button class='btn btn-success p-3'><i class='fa fa-shopping-cart'></i> Place Order</button>
-      //                               <button class='btn text-white p-3' style='background-color:#0097B2;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>
-      //                           </form>
-      //                       </div>
-      //                   </div>
-      //               </div>
-      //           </div>
-      //       </div>";
-//     }
-//   }
-// }
-
 function total_price()
 {
-    global $con;
-    $ip = getIPAddress();
-    $total_price = 0;
-    $cart_query = "Select * from `cart` where ip='$ip'";
-    $result = mysqli_query($con,$cart_query);
-    while($row = mysqli_fetch_array($result))
-    {
-        $product_id = $row['product_id'];
-        $select_products = "Select * from `products` where product_id = '$product_id'";
-        $result_product = mysqli_query($con,$select_products);
-        while($row_product_price = mysqli_fetch_array($result_product))
-        {
-            $product_price=array($row_product_price['product_price']);
-            $product_values=array_sum($product_price);
-            $total_price+=$product_values;
-        }
+  global $con;
+  $ip = getIPAddress();
+  $total_price = 0;
+  $cart_query = "Select * from `cart` where ip='$ip'";
+  $result = mysqli_query($con, $cart_query);
+  while ($row = mysqli_fetch_array($result)) {
+    $product_id = $row['product_id'];
+    $select_products = "Select * from `products` where product_id = '$product_id'";
+    $result_product = mysqli_query($con, $select_products);
+    while ($row_product_price = mysqli_fetch_array($result_product)) {
+      $product_price = array($row_product_price['product_price']);
+      $product_values = array_sum($product_price);
+      $total_price += $product_values;
     }
-    echo $total_price;
+  }
+  echo $total_price;
 }
 
 // get user order details
 function get_user_order_details()
- {
-    global $con;
-    $username = $_SESSION['username'];
- $get_details="Select * from `user_table` where user_name='$username'";
-     $result_query = mysqli_query($con,$get_details);
-     while($row_query=mysqli_fetch_array($result_query))
-     {
-         $user_id=$row_query['user_id'];
-         if(!isset($_GET['edit_account']))
-       {
-             if(!isset($_GET['my_orders']))
-             {
-                 if(!isset($_GET['delete_account']))
-                 {
-                     $get_orders="Select * from `user_orders` where user_id=$user_id and order_status='Pending'";
-                     $result_order_query=mysqli_query($con,$get_orders);
-                     $row_count_query=mysqli_num_rows($result_order_query);
-                   if($row_count_query>0)
-                     {
-                         echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
-                       <p class='text-center'><a href='profile.php?my_orders' class='text-dark fw-bold'>Order Details</a></p>";                                
-                     }
-                   else
-                     {
-                         echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
+{
+  global $con;
+  $username = $_SESSION['username'];
+  $get_details = "Select * from `user` where username='$username'";
+  $result_query = mysqli_query($con, $get_details);
+  while ($row_query = mysqli_fetch_array($result_query)) {
+    $userId = $row_query['userId'];
+    if (!isset($_GET['edit_account'])) {
+      if (!isset($_GET['my_orders'])) {
+        if (!isset($_GET['delete_account'])) {
+          $get_orders = "SELECT * FROM `userorders` WHERE userId=$userId AND orderStatus='Pending'";
+          $result_order_query = mysqli_query($con, $get_orders);
+          $row_count_query = mysqli_num_rows($result_order_query);
+          if ($row_count_query > 0) {
+            echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
+                       <p class='text-center'><a href='profile.php?my_orders' class='text-dark fw-bold'>Order Details</a></p>";
+          } else {
+            echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
                          <p class='text-center'><a href='../index.php' class='text-dark fw-bold'>Explore Products</a></p>";
-                    }
-                 }
-             }
-     }
-     }
- }
-   if (!function_exists('get_user_order_details')) {
-    function get_user_order_details() {
-        global $con;
-        
-        // Check if the session username is set
-        if(isset($_SESSION['username'])) {
-            $username = $_SESSION['username'];
-            
-            // Prepare and execute query to get user details
-            $get_details = "SELECT * FROM user_table WHERE user_name='$username'";
-            $result_query = mysqli_query($con, $get_details);
-            
-            // Check if query executed successfully
-            if($result_query) {
-                // Fetch user details
-                $row_query = mysqli_fetch_array($result_query);
-                $user_id = $row_query['user_id'];
-                
-                // Check if edit_account, my_orders, and delete_account parameters are not set
-                if(!isset($_GET['edit_account']) && !isset($_GET['my_orders']) && !isset($_GET['delete_account'])) {
-                    // Prepare and execute query to get pending orders
-                    $get_orders = "SELECT * FROM `user_orders` WHERE user_id=$user_id AND order_status='Pending'";
-                    $result_order_query = mysqli_query($con, $get_orders);
-                    
-                    // Check if query executed successfully
-                    if($result_order_query) {
-                        $row_count_query = mysqli_num_rows($result_order_query);
-                        
-                        // Display pending orders count and links accordingly
-                        if($row_count_query == 0) {
-                            echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
-                            <p class='text-center'><a href='../index.php' class='text-dark fw-bold'>Explore Products</a></p>";                                
-                        } else {
-                            echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
-                            <p class='text-center'><a href='profile.php?my_orders' class='text-dark fw-bold'>Order Details</a></p>";
-                        }
-                    } else {
-                        echo "Error: " . mysqli_error($con); // Display error if query fails
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
+}
+if (!function_exists('get_user_order_details')) {
+  function get_user_order_details()
+  {
+    global $con;
+
+    // Check if the session username is set
+    if (isset($_SESSION['username'])) {
+      $username = $_SESSION['username'];
+
+      // Prepare and execute query to get user details
+      $get_details = "SELECT * FROM user WHERE username='$username'";
+      $result_query = mysqli_query($con, $get_details);
+
+      // Check if query executed successfully
+      if ($result_query) {
+        // Fetch user details
+        $row_query = mysqli_fetch_array($result_query);
+        $userId = $row_query['userId'];
+
+        // Check if edit_account, my_orders, and delete_account parameters are not set
+        if (!isset($_GET['edit_account']) && !isset($_GET['my_orders']) && !isset($_GET['delete_account'])) {
+          // Prepare and execute query to get pending orders
+          $getorders = "SELECT * FROM `useRorders` WHERE userId=$userId AND orderStatus='Pending'";
+          $result_order_query = mysqli_query($con, $getorders);
+
+          // Check if query executed successfully
+          if ($result_order_query) {
+            $row_count_query = mysqli_num_rows($result_order_query);
+
+            // Display pending orders count and links accordingly
+            if ($row_count_query == 0) {
+              echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
+                            <p class='text-center'><a href='../index.php' class='text-dark fw-bold'>Explore Products</a></p>";
+            } else {
+              echo "<h2 class='text-center text-success mt-5 mb-2'>You have <span class='text-danger'>$row_count_query</span> pending orders</h2>
+                            <p class='text-center'><a href='profile.php?my_orders' class='text-dark fw-bold'>Order Details</a></p>";
+            }
+          } else {
+            echo "Error: " . mysqli_error($con); // Display error if query fails
+          }
+        }
+      }
+    }
+  }
 }
 
-?>
+// Get user order details
