@@ -52,6 +52,10 @@ session_start();
               <ul class="dropdown-menu">
                 <?php
 
+                if (isset($_SESSION['username'])) {
+                  echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./user_area/profile.php"> <i class="fa fa-user"></i> My Account</a>
+            </li>';}
                 if (!isset($_SESSION['username'])) {
                   echo ' <li class="dropdown-item">
               <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Login</a>

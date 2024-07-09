@@ -31,32 +31,32 @@ session_start();
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-auto mx-5">
-                    <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <?php if (!isset($_SESSION['username'])) {
-                  echo "<i class='fa fa-user'></i> Guest";
-                } else {
-                  echo"<i class='fa fa-user'></i> ". $_SESSION['username'];
-                }
-                ?>
-              </a>
-              <ul class="dropdown-menu">
-                <?php
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php if (!isset($_SESSION['username'])) {
+                                    echo "<i class='fa fa-user'></i> Guest";
+                                } else {
+                                    echo "<i class='fa fa-user'></i> " . $_SESSION['username'];
+                                }
+                                ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php
 
-                if (!isset($_SESSION['username'])) {
-                  echo ' <li class="dropdown-item">
+                                if (!isset($_SESSION['username'])) {
+                                    echo ' <li class="dropdown-item">
               <a class="nav-link " href="./user_area/userLogin.php"> <i class="fa fa-user"></i> Login</a>
             </li>';
-                } else {
-                  echo ' <li class="dropdown-item">
+                                } else {
+                                    echo ' <li class="dropdown-item">
               <a class="nav-link " href="./user_area/userLogout.php"> <i class="fa fa-user"></i> Logout</a>
             </li>';
-                }
-                ?>
-                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
+                                }
+                                ?>
+                                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
 
-              </ul>
-            </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -157,7 +157,7 @@ session_start();
                                  <button class='btn text-black p-3' type='submit'name='continue_shopping'  value='Continue Shopping' style='outline:#277A89 1px solid ;border-radius:15px;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>
                                 <button class='submit px-3 py-2 border-0 ms-3 text-light' style='border-radius:15px;'><a href='./user_area/checkout.php' class='text-light text-decoration-none ' ><i class='fa fa-shopping-cart'></i> Checkout</a></button>";
                     } else {
-                        echo "<button class='btn text-black p-3' type='submit'name='continue_shopping'  value='Continue Shopping' style='outline:#277A89 1px solid ;border-radius:15px;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>"; 
+                        echo "<button class='btn text-black p-3' type='submit'name='continue_shopping'  value='Continue Shopping' style='outline:#277A89 1px solid ;border-radius:15px;'><i class='fa fa-shopping-bag'></i> Continue Shopping</button>";
                         // <input type='submit' value='Continue Shopping' class='bg-dark text-light px-3 py-2 border-0 ms-3' name='continue_shopping'>
                     }
                     if (isset($_POST['continue_shopping'])) {
