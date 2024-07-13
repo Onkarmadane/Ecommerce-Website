@@ -61,7 +61,7 @@ if (isset($_POST["insert_product"])) {
 ?>
 
 <!-- Form -->
-<h1 class="text-center mt-5">Insert Products</h1>
+<h1 class="text-center" style="color: #277A89;">Insert Products</h1>
 <hr class="m-0 p-0 w-75 mx-auto mb-2">
 <form class="row row-cols-lg-auto g-3 align-items-center mt-2" method="POST" enctype="multipart/form-data" action="">
   <div class="col-lg-10 w-75 mx-auto">

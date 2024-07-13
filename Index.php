@@ -79,7 +79,7 @@ session_start();
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-1" href="admin_area\index.php"> <i class="fa fa-shopping-bag icon"></i> Become a Seller</a>
+              <a class="nav-link mx-1" href="./admin_area/sellerLogin.php"> <i class="fa fa-shopping-bag icon"></i> Become a Seller</a>
             </li>
           </ul>
         </div>

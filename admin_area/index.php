@@ -1,3 +1,7 @@
+<?php
+include("../includes/connection.php");
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -11,29 +15,61 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-</head>
+
 
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="../index.php"><img src="../assets/images/logo1.png" alt="" style="height: 50px !important;"> </a>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-end " aria-current="page" href="#">Welcome Guest</a>
-                </li>
-            </ul>
+
+            <li class="nav-item dropdown list-unstyled">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php if (isset($_SESSION['sellername'])) {
+                        echo "<i class='fa fa-user'></i> " . $_SESSION['sellername'];
+                    }
+                    ?>
+                </a>
+                <ul class="dropdown-menu">
+                    <?php
+                    if (!isset($_SESSION['sellername'])) {
+                        echo ' <li class="dropdown-item">
+              <a class="nav-link " href="./admin_area/sellerLogin.php"> <i class="fa fa-user"></i> Login</a>
+            </li>';
+                    } else {
+                        echo ' <li class="dropdown-item">
+              <a class="nav-link " href="sellerLogout.php"> <i class="fa fa-user"></i> Logout</a>
+            </li>';
+                    }
+                    ?>
+                </ul>
+            </li>
         </div>
     </nav>
-    <h1 class="text-uppercase text-center"><b>Manage Details</b></h1>
+    <h1 class="text-center" style="color: #277A89;"><b>Manage Details</b></h1>
     <hr class="m-0 p-0 w-75 mx-auto mb-2">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand text-center" href="#">
-                <div class="m-0 p-0"><img src="../assets/images/admin.png" alt="" style="width: 60%;">
-                    <p class="text-center">Admin Name</p>
-                </div>
+                <?php
+
+                $con = mysqli_connect("localhost", "root", "", "mystore1");
+                if (!$con) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                $sellername = $_SESSION['sellername'];
+                $sellerImg = "SELECT * FROM `seller` WHERE sellername='$sellername'";
+                $sellerImg = mysqli_query($con, $sellerImg);
+                $row_image = mysqli_fetch_array($sellerImg);
+                $sellerImg = $row_image['sellerImg'];
+                echo "   <div class='m-0 p-0'><img src='./sellerImg/$sellerImg' alt='$sellername' style='width: 60%;'>
+                    <p class='text-center'><b>$sellername</b></p>
+                </div>";
+                ?>
+
+
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,19 +80,19 @@
                         <a class="nav-link btn btn-info" aria-current="page" href="index.php?insert_products">Insert Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-info" aria-current="page" href="#">View Products</a>
+                        <a class="nav-link btn btn-info" aria-current="page" href="index.php?viewProducts">View Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-info" aria-current="page" href="index.php?insert_category">Insert Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-info" aria-current="page" href="#">View Categories</a>
+                        <a class="nav-link btn btn-info" aria-current="page" href="index.php?viewCategories">View Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-info" aria-current="page" href="index.php?insert_brands">Insert Brands</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-info" aria-current="page" href="#">View Brands </a>
+                        <a class="nav-link btn btn-info" aria-current="page" href="index.php?viewBrands">View Brands </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-info" aria-current="page" href="#">All Orders</a>
@@ -64,15 +100,15 @@
                     <li class="nav-item">
                         <a class="nav-link btn btn-info" aria-current="page" href="#">All Payments</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link btn btn-info" aria-current="page" href="#">List Users</a>
-                    </li>
+                    </li> -->
                 </ul>
-                <ul class="navbar-nav  mb-2 mb-lg-0">
+                <!-- <ul class="navbar-nav  mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="btn btn-info " aria-current="page" href="#">LogOut</a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </nav>
@@ -82,12 +118,40 @@
         if (isset($_GET['insert_category'])) {
             include('insert_categories.php');
         }
+        if (isset($_GET['viewCategories'])) {
+            include('viewCategories.php');
+        }
+        if (isset($_GET['editCategories'])) {
+            include('editCategories.php');
+        }
+        if (isset($_GET['deleteCategories'])) {
+            include('deleteCategories.php');
+        }
         if (isset($_GET['insert_brands'])) {
             include('insert_brands.php');
+        }
+        if (isset($_GET['viewBrands'])) {
+            include('viewBrands.php');
+        }
+        if (isset($_GET['editBrands'])) {
+            include('editBrands.php');
+        }
+        if (isset($_GET['deleteBrands'])) {
+            include('deleteBrands.php');
         }
         if (isset($_GET['insert_products'])) {
             include('insert_products.php');
         }
+        if (isset($_GET['viewProducts'])) {
+            include('viewProducts.php');
+        }
+        if (isset($_GET['editProducts'])) {
+            include('editProducts.php');
+        }
+        if (isset($_GET['deleteProducts'])) {
+            include('deleteProducts.php');
+        }
+
         ?>
     </div>
     <!-- Footer -->
